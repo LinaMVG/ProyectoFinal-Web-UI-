@@ -1,0 +1,80 @@
+.footer {
+    
+    background-color: var(--background-dark);
+    padding: 50px;
+    text-align: center;
+    color: var(--text-color);
+  }
+  
+  .container {
+    
+    max-width: 1200px;
+    align-items: center;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  
+  .col   
+   {
+    flex: 1 1 30%; /* Ajusta el ancho de las columnas según tus necesidades */
+    padding: 10px;
+  }
+  .col p{
+    text-align: left;
+  }
+
+.footer__title{
+    color: var(--primary-color);
+    text-align: left;
+}
+  
+  .lista{
+    list-style: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+  }
+  .lista li{
+    margin-bottom: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+  }
+
+  .social-icons li {
+    
+    display: inline-block;
+    margin: 0 10px;
+  }
+  
+  .copyright {
+    padding: 20px;
+    font-size: 14px;
+    color: var(--text-color);
+  }
+  
+  /* Media queries para hacer el footer responsive */
+  @media (max-width: 768px) {
+    .col {
+      flex: 1 1 100%;
+      
+
+    }
+    .col p{
+        text-align: center;
+      }
+
+      .lista{
+        text-align: center;
+      }
+      .footer__title{
+        text-align: center;
+      }
+  }

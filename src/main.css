@@ -1,0 +1,20 @@
+:root {
+  --primary-color: #8675e8;
+  --secondary-color: #b42ecc;
+  --secondary-color--inactive: #8f429d;
+  --background-color: #ffffff;
+  --background-dark: hsl(0, 0%, 0%);
+  --text-color: #f5f5f5;
+
+  --title-font-size: 2.4rem; /* 2.4rem equivale a 24px si la raíz es 16px */
+  --subtitle-font-size: 1.8rem;
+  --paragraph-font-size: 1.5rem;
+}
+*{
+    box-sizing: border-box;
+}
+html {
+  font-size: 16px;
+  
+}
+
