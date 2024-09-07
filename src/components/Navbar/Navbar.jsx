@@ -44,6 +44,11 @@ export default class Navbar extends Component {
               Turnos
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""} onClick={this.toggleMenu}>
+              Home
+            </NavLink>
+          </li>
         </div>
       </div>
     );
