@@ -35,18 +35,18 @@ export default class Navbar extends Component {
             </NavLink>
           </li>
           <li>
-            <NavLink to="odontologo/modificar" activeClassName="active" onClick={this.toggleMenu}>
-              Modificar
+            <NavLink to="odontologo/mod" activeClassName="active" onClick={this.toggleMenu}>
+              Modificar/Listar
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/" activeClassName="active" onClick={this.toggleMenu}>
+          {/* <li>
+            <NavLink to="odontologo/listar" activeClassName="active" onClick={this.toggleMenu}>
               Listar Todos
             </NavLink>
-          </li>
+          </li> */}
           <li>
-            <NavLink to="/elimar" className={({ isActive }) => isActive ? "active" : ""} onClick={this.toggleMenu}>
-              Eliminar
+            <NavLink to= "odontologo/buscar" className={({ isActive }) => isActive ? "active" : ""} onClick={this.toggleMenu}>
+              Buscar/Eliminar
             </NavLink>
           </li>
         </div>

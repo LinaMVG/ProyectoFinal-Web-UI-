@@ -11,8 +11,6 @@ const PacienteForm = () => {
     fechaIngreso: "",
   });
 
-
-  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOdontologo((prev) => ({
