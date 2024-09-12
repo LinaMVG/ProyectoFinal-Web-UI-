@@ -30,23 +30,23 @@ export default class Navbar extends Component {
 
         <div className={`nav-links ${isOpen ? "open" : ""}`}>
           <li>
-            <NavLink exact to="/pacientes" activeClassName="active" onClick={this.toggleMenu}>
-              Pacientes
+            <NavLink exact to="odontologo/registrar" activeClassName="active" onClick={this.toggleMenu}>
+              Registrar
             </NavLink>
           </li>
           <li>
-            <NavLink to="/odontologos" activeClassName="active" onClick={this.toggleMenu}>
-              Odontologos
+            <NavLink to="odontologo/mod" activeClassName="active" onClick={this.toggleMenu}>
+              Modificar/Listar
             </NavLink>
           </li>
-          <li>
-            <NavLink to="/turnos" activeClassName="active" onClick={this.toggleMenu}>
-              Turnos
+          {/* <li>
+            <NavLink to="odontologo/listar" activeClassName="active" onClick={this.toggleMenu}>
+              Listar Todos
             </NavLink>
-          </li>
+          </li> */}
           <li>
-            <NavLink to="/" className={({ isActive }) => isActive ? "active" : ""} onClick={this.toggleMenu}>
-              Home
+            <NavLink to= "odontologo/buscar" className={({ isActive }) => isActive ? "active" : ""} onClick={this.toggleMenu}>
+              Buscar/Eliminar
             </NavLink>
           </li>
         </div>
