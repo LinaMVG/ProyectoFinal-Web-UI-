@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "./PatientForm.css";
+import "./OdontologoBuscarId.css";
 
 const BuscarOdontologo = () => {
   const [id, setId] = useState(""); // Estado para almacenar el ID ingresado
   const [odontologo, setOdontologo] = useState(null); // Estado para almacenar el odontólogo encontrado
   const [loading, setLoading] = useState(false); // Estado para manejar el loading
   const [error, setError] = useState(null); // Estado para manejar errores
+  const [success, setSuccess] = useState(null);
 
   // Manejar el cambio en el campo de búsqueda por ID
   const handleChange = (e) => {
@@ -17,14 +18,19 @@ const BuscarOdontologo = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccess(null);
+    setOdontologo(null); // Limpia los datos anteriores antes de buscar
 
     try {
-      const response = await fetch(`http://localhost:8080/odontologo/buscar/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/odontologo/buscar/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error al buscar el odontólogo");
@@ -44,12 +50,15 @@ const BuscarOdontologo = () => {
   // Eliminar odontólogo
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/odontologo/eliminar/${odontologo.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/odontologo/eliminar/${odontologo.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error al eliminar el odontólogo");
@@ -57,13 +66,15 @@ const BuscarOdontologo = () => {
 
       console.log("Odontólogo eliminado con éxito");
       setOdontologo(null); // Limpiar el odontólogo eliminado
+      setSuccess("Odontólogo eliminado con éxito."); // Mostrar mensaje de éxito
     } catch (error) {
       console.error("Error en la eliminación del odontólogo:", error);
+      setError("Hubo un error al intentar eliminar el odontólogo.");
     }
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Buscar Odontólogo por ID</h2>
       <form onSubmit={handleSearch}>
         <div className="form-group">
@@ -82,10 +93,12 @@ const BuscarOdontologo = () => {
       </form>
 
       {loading && <p>Cargando...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>} {/* Mensaje de error estilizado */}
+      {/* Mensaje de éxito estilizado */}
+      {success && <p className="success-message">{success}</p>}
 
       {/* Mostrar los datos del odontólogo encontrado en una tabla */}
-      {odontologo && (
+      {odontologo && !error &&  !success && (  /* La tabla solo se muestra si hay un odontólogo y no hay error  o mensaje de éxito */
         <table className="odontologo-table">
           <thead>
             <tr>

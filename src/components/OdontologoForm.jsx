@@ -11,6 +11,9 @@ const PacienteForm = () => {
     fechaIngreso: "",
   });
 
+  const [mensaje, setMensaje] = useState("");
+  const [mensajeTipo, setMensajeTipo] = useState(""); 
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setOdontologo((prev) => ({
@@ -32,16 +35,24 @@ const PacienteForm = () => {
     });
 
     if (!response.ok) {
-      throw new Error('Error al guardar los datos del paciente');
+      throw new Error('Error al guardar los datos del odontologo');
     }
 
     const result = await response.json();
     console.log('Odontologo guardado con éxito:', result);
 
+    setMensaje("Odontólogo guardado con éxito!");
+    setMensajeTipo("success");
+    setOdontologo({ id: "", apellido: "", nombre: "", dni: "", fechaIngreso: "" }); 
+
+
     // Aquí puedes agregar lógica adicional, como limpiar el formulario o redirigir al usuario
 
   } catch (error) {
     console.error('Error en el envío del formulario:', error);
+
+    setMensaje("No se pudo guardar el odontólogo. Inténtelo de nuevo.");
+    setMensajeTipo("error");
   }
 };
 
@@ -87,6 +98,14 @@ const PacienteForm = () => {
           Guardar Odontologo
         </button>
       </form>
+
+      {/* Mostrar mensajes de éxito o error debajo del formulario */}
+      {mensaje && (
+        <div className={`message ${mensajeTipo}`}>
+          {mensaje}
+        </div>
+      )}
+      
     </div>
   );
 };
