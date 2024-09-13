@@ -6,6 +6,7 @@ const BuscarOdontologo = () => {
   const [odontologo, setOdontologo] = useState(null); // Estado para almacenar el odontólogo encontrado
   const [loading, setLoading] = useState(false); // Estado para manejar el loading
   const [error, setError] = useState(null); // Estado para manejar errores
+  const [success, setSuccess] = useState(null);
 
   // Manejar el cambio en el campo de búsqueda por ID
   const handleChange = (e) => {
@@ -17,6 +18,7 @@ const BuscarOdontologo = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccess(null);
     setOdontologo(null); // Limpia los datos anteriores antes de buscar
 
     try {
@@ -64,8 +66,10 @@ const BuscarOdontologo = () => {
 
       console.log("Odontólogo eliminado con éxito");
       setOdontologo(null); // Limpiar el odontólogo eliminado
+      setSuccess("Odontólogo eliminado con éxito."); // Mostrar mensaje de éxito
     } catch (error) {
       console.error("Error en la eliminación del odontólogo:", error);
+      setError("Hubo un error al intentar eliminar el odontólogo.");
     }
   };
 
@@ -90,9 +94,11 @@ const BuscarOdontologo = () => {
 
       {loading && <p>Cargando...</p>}
       {error && <p className="error-message">{error}</p>} {/* Mensaje de error estilizado */}
+      {/* Mensaje de éxito estilizado */}
+      {success && <p className="success-message">{success}</p>}
 
       {/* Mostrar los datos del odontólogo encontrado en una tabla */}
-      {odontologo && !error && (  /* La tabla solo se muestra si hay un odontólogo y no hay error */
+      {odontologo && !error &&  !success && (  /* La tabla solo se muestra si hay un odontólogo y no hay error  o mensaje de éxito */
         <table className="odontologo-table">
           <thead>
             <tr>
