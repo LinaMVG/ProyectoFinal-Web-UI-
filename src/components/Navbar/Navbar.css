@@ -25,6 +25,17 @@
     width: 60px;
     height: 60px;
   }
+
+  .logoLink {
+    display: inline-block; 
+    text-decoration: none; 
+  }
+
+  .logoLink:hover,
+  .logoLink:focus {
+    background-color: transparent; /* Sin fondo al pasar el cursor o al hacer clic */
+    outline: none; /* Elimina el contorno predeterminado al hacer clic */
+  }
   
   .nav-links {
     list-style: none;

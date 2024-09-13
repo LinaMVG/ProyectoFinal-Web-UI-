@@ -19,7 +19,9 @@ export default class Navbar extends Component {
     return (
       <div className="nav">
         <div className="logoContainer">
+          <NavLink to="/" className="logoLink" onClick={this.toggleMenu}>
             <img className="logoImagen" src={logoImagen} alt="Diente" />
+          </NavLink>
             <p className="logo">Clinica</p>
         </div>
         
