@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./PatientForm.css";
+import "./OdontologoBuscarId.css";
 
 const BuscarOdontologo = () => {
   const [id, setId] = useState(""); // Estado para almacenar el ID ingresado
@@ -17,14 +17,18 @@ const BuscarOdontologo = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setOdontologo(null); // Limpia los datos anteriores antes de buscar
 
     try {
-      const response = await fetch(`http://localhost:8080/odontologo/buscar/${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/odontologo/buscar/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error al buscar el odontólogo");
@@ -44,12 +48,15 @@ const BuscarOdontologo = () => {
   // Eliminar odontólogo
   const handleDelete = async () => {
     try {
-      const response = await fetch(`http://localhost:8080/odontologo/eliminar/${odontologo.id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8080/odontologo/eliminar/${odontologo.id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Error al eliminar el odontólogo");
@@ -63,7 +70,7 @@ const BuscarOdontologo = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Buscar Odontólogo por ID</h2>
       <form onSubmit={handleSearch}>
         <div className="form-group">
@@ -82,10 +89,10 @@ const BuscarOdontologo = () => {
       </form>
 
       {loading && <p>Cargando...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p className="error-message">{error}</p>} {/* Mensaje de error estilizado */}
 
       {/* Mostrar los datos del odontólogo encontrado en una tabla */}
-      {odontologo && (
+      {odontologo && !error && (  /* La tabla solo se muestra si hay un odontólogo y no hay error */
         <table className="odontologo-table">
           <thead>
             <tr>
